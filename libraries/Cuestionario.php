@@ -49,12 +49,13 @@ class Cuestionario
                     unset($pregunta['opciones']);
                  }*/
                  
-                  ci()->db->where('id_pregunta',$pregunta['id'])
+                 $pregunta['id'] AND ci()->db->where('id_pregunta',$pregunta['id'])
+                            //->where('id_cuestionario',$id_cuestionario)
                             ->delete('cat_pregunta_opciones');
                             
                  if(empty($pregunta['opciones']) == false && $pregunta['tipo']!= 'text' )
                  {
-                    //$ids_opciones = array();
+                    $ids_opciones = array(0);
                     foreach($pregunta['opciones'] as $opcion)
                     {
                         $data_opcion = array(
@@ -76,7 +77,7 @@ class Cuestionario
                         {*/
                            // print_r($data_opcion);
                             ci()->db->set($data_opcion)->insert('cat_pregunta_opciones');
-                          //  $ids_opciones[] = ci()->db->insert_id();
+                            $ids_opciones[] = ci()->db->insert_id();
                         //}
                         
                         
@@ -84,8 +85,9 @@ class Cuestionario
                     
                     //Eliminar opciones
             
-                     //ci()->db->where_not_in('id',$ids_opciones)
-                       //     ->delete('cat_pregunta_opciones');
+                     ci()->db->where_not_in('id',$ids_opciones)
+                            ->where('id_pregunta',$pregunta['id'])
+                            ->delete('cat_pregunta_opciones');
                  }
                 
                 
@@ -97,8 +99,8 @@ class Cuestionario
                             
             //Eliminar opciones
             
-             ci()->db->where_not_in('id_pregunta',$ids_pregunta)
-                           ->delete('cat_pregunta_opciones');
+             //ci()->db->where_not_in('id_pregunta',$ids_pregunta)
+               //            ->delete('cat_pregunta_opciones');
         }
         return false;
     }

@@ -50,6 +50,16 @@
                         </div>
                     </div> 
                     <div class="form-group">
+                        <label class="control-label"><span class="required">*</span> Organización de las preguntas:</label>
+                        <br/>
+                            <label class="radio-inline">
+                                <input type="radio" name="tabla" value="0" />Ninguno
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="tabla" value="1" />Tabla
+                            </label>
+                     </div>
+                    <div class="form-group">
                         <label class="control-label"><span class="required">*</span> Tipo:</label>
                         <div class="controls">
                             <?=form_dropdown('tipo',array(''=>' [ Elegir ] ','Normal'=>'Normal','PrePost'=>'PrePost','Diagnostico'=>'Diagnostico'),$cuestionario->tipo,'class="form-control" ');?>

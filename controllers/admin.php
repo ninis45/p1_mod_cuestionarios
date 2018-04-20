@@ -41,6 +41,11 @@ class Admin extends Admin_Controller {
 				'field' => 'preguntas',
 				'label' => 'Preguntas',
 				'rules' => ''
+				),
+            array(
+				'field' => 'campos',
+				'label' => 'Campos',
+				'rules' => ''
 				)
 		);
 		$this->template->set_breadcrumb('Cuestionarios','cuestionario');
@@ -106,6 +111,10 @@ class Admin extends Admin_Controller {
 		{
 		    
 			$cuestionario->{$rule['field']} = $this->input->post($rule['field']);
+            if(!$_POST)
+            {
+                $cuestionario->campos = array();
+            }
 		}
 		$this->template->set_partial('buttons','partials/buttons',array('buttons'=>array('create','cancel')))
 			->set_breadcrumb('Agregar cuestionario','admin/cuestionario/create')

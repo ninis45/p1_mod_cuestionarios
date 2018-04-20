@@ -47,6 +47,7 @@
                             <p class="help-block">Permite una breve descripción acerca del cuestionario, al momento de levantar la encuesta</p>
                         </div>
                     </div> 
+                     
                     <div class="form-group">
                         <label class="control-label"><span class="required">*</span> Tipo:</label>
                         <div class="controls">
